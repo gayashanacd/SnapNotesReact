@@ -1,6 +1,6 @@
 import { Todo } from "../types/todo";
 
-const BASE_URL = "http://localhost:3000/";
+const BASE_URL = "http://localhost:3000";
 
 export const fetchTodos = async (): Promise<Todo[]> => {
     const res = await fetch(BASE_URL);    
@@ -16,7 +16,7 @@ export const createTodo = async ( text: string ): Promise<Todo> => {
     return await res.json();    
 } 
 
-export const toggleTodo = async ( id: string ): Promise<Todo> => {
+export const toggleTodoById = async ( id: string ): Promise<Todo> => {
     const res = await fetch(`${BASE_URL}/${id}`, {
         method: 'PUT',
     });

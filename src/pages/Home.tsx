@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Todo, Filter } from "../types/todo";
 import TodoItem  from "../components/TodoItem";
 import TodoForm from "../components/TodoForm";
-import { fetchTodos, createTodo, toggleTodo } from "../services/todoService";
+import { fetchTodos, createTodo, toggleTodoById } from "../services/todoService";
 
 
 const Home : React.FC = () => {
@@ -22,8 +22,9 @@ const Home : React.FC = () => {
     }
 
     const toggleTodo = async (id: string) => {
-        const updated = await toggleTodo(id);
-        // setTodos(prev => prev.map(t => (t.id === id ? updated : t)));
+        const updated = await toggleTodoById(id); 
+        console.log(`Toggled todo ${id} →`, updated.completed);
+        setTodos(prev => prev.map(t => (t.id === id ? updated : t)));
     };
 
     const filteredTodos = todos.filter(todo => {
